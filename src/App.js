@@ -33,7 +33,7 @@ function App(){
   const [user, setUser] = useState(false)
   const [userDetail, setUserDetail] = useState([])
   
-  useEffect{() =>{
+  useEffect(() =>{
     async function carregarPosts(){
       const dados = onSnapshot(collection(db, 'posts'), (snapshot) => {
         let listaPost = []
@@ -41,15 +41,14 @@ function App(){
           listaPost.push({
             idPost: doc.id,
             titulo: doc.data().titulo,
-            autor: doc.data().autor,
-            
+            autor: doc.data().autor
           });
         });
-
+        setPosts(listaPost);
       })
     }
-  }
-  }
+    carregarPosts();
+  },[])
 
 }
 
