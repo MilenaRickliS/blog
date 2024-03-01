@@ -35,7 +35,7 @@ function App(){
   
   useEffect(() =>{
     async function carregarPosts(){
-      const dados = onSnapshot(collection(db, 'posts'), (snapshot) => {
+      const dados = onSnapshot(collection(db, 'posts'), (snapshot) => { //snapshot percorre os dados no banco
         let listaPost = []
         snapshot.forEach((doc) => {
           listaPost.push({
@@ -49,6 +49,58 @@ function App(){
     }
     carregarPosts();
   },[])
+
+  useEffect(() =>{
+    async function verificarLogin(){
+      onAuthStateChanged(auth, (user) => {
+        if(user){
+          //usuário logado
+          setUser(true);
+          setUserDetail({
+            id: user.id,
+            email: user.email
+          });
+        } else{
+          setUser(false);
+          setUserDetail({});
+        }
+      })
+    }
+    verificarLogin();
+  },[]);
+
+  //adicionar o post (create)
+  async function criarPost(){
+    await addDoc(collection(db, "posts"),{
+      titulo: titulo,
+      autor: autor
+    }).then(() =>{
+      setAutor('')
+      setTitulo('')
+    }).catch((error) =>{
+      console.log("ERRO" + error)
+    })
+  }
+
+  //buscar os posts(read)
+  async function buscarPosts(){
+    const ListasPosts = collection(db, 'posts')
+    await getDocs(ListasPosts).then((snapshot) => {
+      let lista = [];
+      snapshot.forEach((doc)=>{
+        lista.push({
+          id: doc.id,
+          titulo: doc.data().titulo,
+          autor: doc.data().autor
+        });
+      });
+      setPosts(lista);
+    }).catch((error) =>{
+      console.log('DEU RUIM' + error)
+    });
+  }
+
+  
 
 }
 
