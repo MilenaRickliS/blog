@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { db, auth} from './firebaseConnection';
+import './App.css'
 
 import {
   doc, 
@@ -128,10 +129,48 @@ function App(){
     })
   }
 
-  
+  return(
+    <div>
+      <h1>React JS + Firebase</h1>
+      <div className="container">
+        <h2>POSTS</h2>
+        <label>ID do Post:</label>
+        <input placeholder="Digite o ID"
+        value={idPost}
+        onChange={(e) => setIdPost(e.target.value)}/>
 
+        <label>Titulo</label>
+        <textarea type='text' placeholder="Digite o Titulo"
+        value={titulo}
+        onChange={(e) => setTitulo(e.target.value)}/>
+
+        <label>Autor</label>
+        <input type="text" placeholder="Digite o Autor do Post"
+        value={autor}
+        onChange={(e) => setAutor(e.target.value)}/>
+
+        <button onClick={criarPost}>Cadastrar</button>
+        <button onClick={buscarPosts}>Buscar</button>
+        <button onClick={editarPost(idPost)}>Editar</button>
+        
+        <ul>
+          {posts.map((post) => {
+            return(
+              <li key={post.id}>
+                <strong>ID: {post.id}</strong>
+                <strong>Titulo: {post.titulo}</strong>
+                <span>Autor: {post.autor}</span>
+                <button onClick={excluirPost(post.id)}>Excluir</button>
+              </li>
+            )
+          })}
+        </ul>
+
+      </div>
+    </div>
+  );
   
 
 }
 
-export default App
+export default App;
