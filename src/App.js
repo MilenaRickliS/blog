@@ -100,6 +100,36 @@ function App(){
     });
   }
 
+  //editar post (update)
+  async function editarPost(id){
+    const docRef = doc(db, 'posts', idPost)
+    await updateDoc(docRef, {
+      titulo: titulo,
+      autor: autor
+    }).then(() => {
+      console.log("post atualizado")
+      setIdPost('')
+      setTitulo('')
+      setAutor('')
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+  //excluir post (delete)
+  async function excluirPost(id){
+    const docRef = doc(db, 'posts', idPost)
+    await deleteDoc(docRef)
+    .then(() => {
+      alert('post deletado')
+    })
+    .catch((error) =>{
+      console.log(error)
+    })
+  }
+
+  
+
   
 
 }
