@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #a9c9ec;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 700px;
+  background-color: #fff;
+  border-radius: 7px;
+  margin: 8px;
+  padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input, textarea{
+  border-radius: 5px;
+  width: 500px;
+  font-size: 15px;
+  padding: 10px;
+  margin: 10px;
+}
+label{
+  color: #74125e;
+  font-weight: 700;
+}
+.dolado{
+  display: inline-block;
+}
+
+button{
+  height: 40px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #b673dd;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.5s;
+  text-decoration: none;
+  margin: 20px;
+}
+
+button:hover{
+  background-color: #74125e;
+}
+
+hr{
+  width: 100%;
+  border-top: 1px dashed rgb(160, 55, 192);
 }
